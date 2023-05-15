@@ -1,0 +1,14 @@
+server:
+  port: 3001
+
+db:
+  type: 'mysql'
+  host: '192.168.0.6'
+  port: 3306
+  database: 'test'
+  username: 'root'
+  password: '1234'
+
+jwt:
+  expriesIn: 3600
+  secret: 'Secret1234'
