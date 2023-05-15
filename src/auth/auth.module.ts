@@ -16,13 +16,13 @@ const jwtConfig = config.get('jwt')
     JwtModule.register({
       secret: jwtConfig.secret,
       signOptions:{
-        expiresIn:jwtConfig.expiresIn
+        expiresIn:3600
       }
     }),
     TypeOrmCustomModule.forCustomRepository([UserRepository])
   ],
   controllers: [AuthController],
-  providers: [AuthService,GoogleStrategy,JwtStrategy],
-  exports: [GoogleStrategy,PassportModule,JwtStrategy]
+  providers: [AuthService,JwtStrategy,GoogleStrategy],
+  exports: [JwtStrategy,PassportModule]
 })
 export class AuthModule {}

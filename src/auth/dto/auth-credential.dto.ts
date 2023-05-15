@@ -13,10 +13,6 @@ export class AuthCredentialDto {
     @MaxLength(20)
     email : string
 
-    
-    @IsString()
-    accessToken:string
-
     // @IsString()
     // @MinLength(4)
     // @MaxLength(20)

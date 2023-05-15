@@ -37,12 +37,19 @@ export class AuthService {
         if (!authCredentialDto) {
             throw new UnauthorizedException('no google user')
         }else{
-            const {username,email,accessToken} = authCredentialDto
+            const {username,email} = authCredentialDto
             const  admin = await this.userRepository.findOne({where:{email}})
             if(admin){
+                const payload = {email}
+                const accessToken = await this.jwtService.sign(payload)
                 return {accessToken}
             }else{
-                return await this.userRepository.createUser(authCredentialDto)
+                await this.userRepository.createUser(authCredentialDto)
+                const payload = {email}
+                const accessToken = await this.jwtService.sign(payload)
+                return {accessToken}
+                
+             
             }
             
         }
